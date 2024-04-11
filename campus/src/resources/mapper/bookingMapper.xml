@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.collage.campus.mapper.bookingMapper">
+
+    <resultMap id="BaseResultMap" type="edu.collage.campus.entity.booking">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="userId" column="user_id" jdbcType="BIGINT"/>
+        <result property="startTime" column="start_time" jdbcType="TIME"/>
+        <result property="endTime" column="end_time" jdbcType="TIME"/>
+        <result property="date" column="date" jdbcType="DATE"/>
+        <result property="qrCode" column="qr_code" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getGroupForNumber" parameterType="java.time.LocalDate"
+            resultType="edu.collage.campus.entity.UsersCount">
+        SELECT timeSlot, COUNT(user_id) AS number
+        FROM booking
+        <if test="date != null">
+            WHERE DATE(date) = #{date}
+        </if>
+        GROUP BY timeSlot
+        order by timeSlot;
+    </select>
+
+    <!--    <resultMap id="GroupNumberSlot" type="edu.collage.campus.entity.GroupNumberSlot">-->
+    <!--        <result property="timeSlot" column="timeSlot" jdbcType="Integer"/>-->
+    <!--        <result property="numBooking" column="num_bookings" jdbcType="Integer"/>-->
+    <!--        <result property="over" column="over_1000" jdbcType="boolean"/>-->
+    <!--    </resultMap>-->
+
+
+    <!--    <select id="getGroupNumberforTimeSlot" resultMap="GroupNumberSlot">-->
+    <!--        SELECT timeSlot,-->
+    <!--               COUNT(*) AS num_bookings,-->
+    <!--               CASE-->
+    <!--                   WHEN COUNT(*) >= 1000 THEN true-->
+    <!--                   ELSE false-->
+    <!--                   END  AS over_1000-->
+    <!--        FROM booking-->
+    <!--        WHERE date = #{date}-->
+    <!--        GROUP BY timeSlot-->
+    <!--        order by timeSlot;-->
+    <!--    </select>-->
+
+
+    <sql id="Base_Column_List">
+        id,user_id,start_time,
+        end_time,date,qr_code
+    </sql>
+</mapper>
