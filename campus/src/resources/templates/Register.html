@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:charset="utf-8" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUST you! 2024 校园开放日</title>
+    <link rel="stylesheet" href="/style/style.tailwindCSS.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('/images/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body style="height: min-content;" class="my-auto w-full flex justify-center">
+<div class="h-screen w-full  flex justify-center items-center">
+    <div class="w-1/2 xl:w-1/4">
+        <form class="bg-white p-8 rounded-lg shadow-lg min-w-full"
+              th:action="${@environment.getProperty('myEnv.url')}+'/auth/register'" method="post">
+            <h1 class="text-center text-2xl mb-6 text-gray-600 font-bold font-sans">Formregister</h1>
+            <div>
+                <label class="text-gray-800 font-semibold block my-3 text-md" for="username">Username</label>
+                <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none" type="text" name="username"
+                       id="username" placeholder="username">
+            </div>
+            <div>
+                <label for="default"
+                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Organization</label>
+                <select name="organization" id="default"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                    <option value="校内人员">校内人员</option>
+                    <option value="校外人员" selected>校外人员</option>
+                </select>
+            </div>
+            <div>
+                <label class="text-gray-800 font-semibold block my-3 text-md" for="password">Password</label>
+                <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none" type="password"
+                       name="password"
+                       id="password" placeholder="password">
+            </div>
+            <div>
+                <label class="text-gray-800 font-semibold block my-3 text-md" for="confirm">Confirm password</label>
+                <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none" type="password" name="confirm"
+                       id="confirm" placeholder="confirm password">
+            </div>
+            <button type="submit"
+                    class="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">
+                Register && Login
+            </button>
+        </form>
+    </div>
+
+</div>
+</body>
+<script>
+    function my_alert(level, message) {
+        const error = "bg-red-50 text-red-800";
+        const succeed = "text-green-800 bg-green-50"
+        const info = "text-gray-800 bg-gray-50"
+
+        let le, me;
+        if (level === "error") {
+            le = error;
+            me = "错误";
+
+        } else if (level === "succeed") {
+            le = succeed;
+            me = "成功";
+        } else {
+            le = info;
+            me = "信息";
+        }
+
+
+        const alert = `<div class="flex absolute top-0 items-center p-4 mb-4 text-sm  rounded-lg ${le}" id="myAlert" role="alert">
+        <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+        </svg>
+        <div>
+            <span class="font-medium">${me}</span> <span id="alert-content">${message}</span>
+        </div>
+    </div>`
+
+
+        document.body.insertAdjacentHTML("afterbegin",alert);
+        setTimeout(() => {
+            const myAlert = document.getElementById("myAlert");
+            myAlert.remove();
+        }, 2000)
+    }
+
+
+</script>
+</html>
