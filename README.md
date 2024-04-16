@@ -36,22 +36,6 @@ Database:
 
 4. Users can check the booked activities through the order page.
 
-![20240413001320316](./images/20240413001320316.png)
-
-<center>图1 - 注册页面</center>
-
-![20240413001921716](./images/20240413001921716.png)
-
-<center>图2 - 登录页面</center>
-
-![20240413002016007](./images/20240413002016007.png)
-
-<center>图3 - 预约入校页面</center>
-
-![20240413002126388](./images/image-20240413002126388.png)
-
-<center>图4 - 入校活动预约页面</center>
-
 
 # Development
 
