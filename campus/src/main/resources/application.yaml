@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: campus
+  datasource:
+    url: jdbc:mysql://localhost:3306/campus?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+  session:
+    store-type: jdbc # 使用jdbc模式
+    jdbc:
+      initialize-schema: always # 是否自动创建所需表，配置项为always(总是)、never(从不)，因我自定义了表名，所以选择手动建表
+    timeout: 259200  # 超时时间 3天 单位是秒
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
+
+logging:
+  log4j2:
+    config:
+      override: log4j2-spring.xml
+  level:
+    web: debug
+    sql: debug
+    root: debug
+
+
+myEnv:
+  url: http://localhost:8080
